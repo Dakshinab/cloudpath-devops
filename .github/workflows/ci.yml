@@ -24,7 +24,7 @@ jobs:
       - name: Build the jar
         run: ./mvnw clean package -DskipTests
 
-       - name: List files (debug)
+      - name: List files (debug)
         run: ls -la
 
       - name: Build the Docker image
