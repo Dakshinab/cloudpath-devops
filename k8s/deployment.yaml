@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudpath-deployment
+  namespace: cloudpath
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudpath-app
+  template:
+    metadata:
+      labels:
+        app: cloudpath-app
+    spec:
+      containers:
+        - name: cloudpath-app
+          image: cloudpath-app
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: cloudpath-config
+            - secretRef:
+                name: cloudpath-secret
