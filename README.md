@@ -23,7 +23,7 @@ Developer --> GitHub --> GitHub Actions (test, build, scan)
 - **Containerization:** Docker
 - **CI/CD:** GitHub Actions
 - **Orchestration:** Kubernetes (kind)
-- **Infrastructure as Code:** Terraform (planned)
+- **Infrastructure as Code:** Terraform (Docker provider, local resources)
 - **Security scanning:** Trivy
 
 ## Application endpoints
@@ -80,14 +80,40 @@ Kubernetes objects used:
 - **Deployment** — runs the container as a pod, restarts it automatically if it fails
 - **Service** (NodePort) — exposes the app so it can be reached from outside the cluster
 
+## Infrastructure as Code (Terraform)
+
+Terraform is used with the Docker provider to manage local resources — no AWS or paid cloud resources are used, to stay within free-tier cost limits.
+
+```bash
+cd terraform
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+```
+
+Plan output is saved as evidence at `docs/terraform-plan-week5.txt`.
+
+## Release rollout and rollback
+
+Demonstrated by updating the `APP_MESSAGE` ConfigMap value, rolling it out, and testing rollback:
+
+```bash
+kubectl apply -f k8s/configmap.yaml
+kubectl rollout restart deployment/cloudpath-deployment -n cloudpath
+kubectl rollout status deployment/cloudpath-deployment -n cloudpath
+```
+
+**Finding:** `kubectl rollout undo` only reverts settings defined directly on the Deployment (image, replicas, inline env vars) — it does **not** revert a separately managed ConfigMap's content. Recovering a ConfigMap change requires manually reapplying a prior version (e.g. from Git history). Full write-up: `docs/week6-rollout-rollback-notes.md`.
+
 ## Project status
 
 - [x] Week 1 — Application built (endpoints, health check, env-based config, test)
 - [x] Week 2 — Dockerized (Dockerfile, .dockerignore, non-root user, Trivy scan)
 - [x] Week 3 — CI pipeline (GitHub Actions: test, build, Docker, Trivy scan on every push)
 - [x] Week 4 — Kubernetes deployment (namespace, configmap, secret, deployment, service — verified on local kind cluster)
-- [ ] Week 5 — Terraform infrastructure
-- [ ] Week 6 — Release rollout/rollback testing
+- [x] Week 5 — Terraform infrastructure (Docker provider, init/fmt/validate/plan evidence)
+- [x] Week 6 — Release rollout/rollback testing (with documented ConfigMap rollback finding)
 - [ ] Week 7 — Monitoring and documentation
 - [ ] Week 8 — Final demo and submission
 
