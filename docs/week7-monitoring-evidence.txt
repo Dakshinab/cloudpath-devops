@@ -1,0 +1,6 @@
+NAME                                   READY   STATUS    RESTARTS   AGE     IP           NODE                              NOMINATED NODE   READINESS GATES
+cloudpath-deployment-9978dcdbb-75qnp   1/1     Running   0          4h14m   10.244.0.8   cloudpath-cluster-control-plane   <none>           <none>
+
+
+NAME                                   CPU(cores)   MEMORY(bytes)   
+cloudpath-deployment-9978dcdbb-75qnp   2m           153Mi           
