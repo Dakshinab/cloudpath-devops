@@ -20,14 +20,8 @@ The project proves not just that the application runs, but that it can be built,
 
 ## Architecture
 
-```
-Developer --> GitHub --> GitHub Actions (test, build, scan)
-                              |
-                              v
-                        Docker image --> Kubernetes (kind) --> Monitoring
-                                              ^
-                                              |
-                                     Terraform (local infra)
+![CloudPath Architecture](docs/architecture.svg)
+
 ```
 
 - **Developer** pushes code to GitHub
