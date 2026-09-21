@@ -22,8 +22,6 @@ The project proves not just that the application runs, but that it can be built,
 
 ![CloudPath Architecture](docs/architecture.svg)
 
-```
-
 - **Developer** pushes code to GitHub
 - **GitHub Actions** automatically tests, builds, and scans the code on every push
 - **Docker** packages the application into a portable, secure container
@@ -75,7 +73,7 @@ cloudpath-devops/
 │   └── service.yaml
 ├── terraform/                    # Infrastructure as Code (Docker provider)
 │   └── main.tf
-├── docs/                         # Evidence: scan results, plans, monitoring, notes
+├── docs/                         # Evidence: scan results, plans, monitoring, notes, architecture diagram
 ├── Dockerfile
 ├── .dockerignore
 ├── pom.xml
@@ -199,12 +197,14 @@ Evidence and a documented failure-detection approach are saved in `docs/week7-mo
 
 | File | Contents |
 |---|---|
+| `docs/architecture.svg` | Layered architecture diagram |
 | `docs/trivy-scan-week2.txt` | Docker image security scan results |
 | `docs/terraform-plan-week5.txt` | Terraform plan output |
 | `docs/week6-rollout-rollback-notes.md` | Rollout/rollback exercise and findings |
 | `docs/week7-monitoring-evidence.txt` | Pod status and resource usage |
 | `docs/week7-app-logs.txt` | Application logs |
 | `docs/week7-monitoring-notes.md` | Monitoring approach and failure-detection notes |
+| `docs/week8-clean-setup-verification.md` | Fresh-environment setup verification |
 
 ---
 
@@ -217,11 +217,11 @@ Evidence and a documented failure-detection approach are saved in `docs/week7-mo
 - [x] Week 5 — Terraform infrastructure (Docker provider, init/fmt/validate/plan)
 - [x] Week 6 — Release rollout/rollback testing
 - [x] Week 7 — Monitoring and documentation
-- [ ] Week 8 — Final demo and submission
+- [x] Week 8 — Final release tagged (`v1.0-final`), clean-environment setup verified end-to-end, repository cleaned; presentation and LMS submission pending
 
 ---
 
 ## Author
 
 **Dakshina Dissanayake**
-DevOps Engineer Intern — Codezela Technologies
+DevOps Engineer Intern — Codezela Technologies 
